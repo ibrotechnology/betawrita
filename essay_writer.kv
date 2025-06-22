@@ -1,0 +1,536 @@
+ScreenManager:
+    SplashScreen:
+    LoginScreen:
+    RegisterScreen:
+    HomeScreen:
+    ModelEssayScreen:
+    WriteEssayScreen:
+    DictionaryScreen:
+    RubricScreen:
+    ImagePageViewerScreen:
+
+<SplashScreen>:
+    name: 'splash'
+    opacity: 1  # Important for animation
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'assets/images/splashscreen.png'
+
+        Label:
+            text: "Loading..."
+            font_size: '20sp'
+            bold: True
+            color: 1, 1, 1, 1
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'center_x': 0.5, 'y': 0.05}
+
+<LoginScreen>:
+    name: 'login'
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.18, 0.51, 0.94, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Image:
+            source: 'assets/images/loginbanner.png'
+            size_hint: 0.6, 0.4
+            allow_stretch: True
+            pos_hint: {'center_x': 0.5, 'center_y': 0.75}
+
+        Label:
+            text: "Username"
+            color: 1, 1, 0, 1
+            font_size: '20sp'
+            pos_hint: {'x': 0.1, 'center_y': 0.58}
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+            size_hint: 0.8, None
+
+        TextInput:
+            id: login_username
+            hint_text: "Enter Username"
+            multiline: False
+            size_hint: 0.8, None
+            height: 120
+            pos_hint: {'x': 0.1, 'center_y': 0.52}
+
+        Label:
+            text: "Password"
+            color: 1, 1, 0, 1
+            font_size: '20sp'
+            pos_hint: {'x': 0.1, 'center_y': 0.44}
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+            size_hint: 0.8, None
+
+        TextInput:
+            id: login_password
+            hint_text: "Enter Password"
+            multiline: False
+            password: True
+            size_hint: 0.8, None
+            height: 120
+            pos_hint: {'x': 0.1, 'center_y': 0.38}
+
+        Button:
+            text: "Login"
+            background_color: 0.9, 0.9, 0.9, 1
+            color: 1, 1, 0, 1
+            size_hint: 0.8, None
+            height: 150
+            pos_hint: {'x': 0.1, 'center_y': 0.28}
+            on_release: root.login()
+
+        Button:
+            text: "Register"
+            background_color: 1, 0.6, 0.7, 1
+            color: 1, 1, 0, 1
+            size_hint: 0.8, None
+            height: 150
+            pos_hint: {'x': 0.1, 'center_y': 0.2}
+            on_release: root.manager.current = 'register'
+
+        Label:
+            id: login_status
+            text: ""
+            color: 1, 0, 0, 1
+            font_size: '16sp'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.12}
+
+
+<RegisterScreen>:
+    name: 'register'
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.18, 0.51, 0.94, 1  # blue background
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Image:
+            source: 'assets/images/registerbanner.png'
+            size_hint: 0.6, 0.4
+            allow_stretch: True
+            pos_hint: {'center_x': 0.5, 'center_y': 0.75}
+
+        Label:
+            text: "Username"
+            color: 1, 1, 0, 1
+            font_size: '20sp'
+            size_hint: 0.8, None
+            height: 50
+            pos_hint: {'x': 0.1, 'center_y': 0.58}
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+
+        TextInput:
+            id: reg_username
+            hint_text: "Choose Username"
+            multiline: False
+            size_hint: 0.8, None
+            height: 120
+            pos_hint: {'x': 0.1, 'center_y': 0.52}
+
+        Label:
+            text: "Password"
+            color: 1, 1, 0, 1
+            font_size: '20sp'
+            size_hint: 0.8, None
+            height: 50
+            pos_hint: {'x': 0.1, 'center_y': 0.44}
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+
+        TextInput:
+            id: reg_password
+            hint_text: "Choose Password"
+            multiline: False
+            password: True
+            size_hint: 0.8, None
+            height: 120
+            pos_hint: {'x': 0.1, 'center_y': 0.38}
+
+        Button:
+            text: "Create Account"
+            background_color: 0.9, 0.9, 0.9, 1
+            color: 1, 1, 0, 1
+            size_hint: 0.8, None
+            height: 150
+            pos_hint: {'x': 0.1, 'center_y': 0.28}
+            on_release: root.register()
+
+        Button:
+            text: "Back to Login"
+            background_color: 1, 0.6, 0.7, 1
+            color: 1, 1, 0, 1
+            size_hint: 0.8, None
+            height: 150
+            pos_hint: {'x': 0.1, 'center_y': 0.2}
+            on_release: root.manager.current = 'login'
+
+        Label:
+            id: register_status
+            text: ""
+            color: 0, 1, 0, 1
+            font_size: '16sp'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.12}
+
+
+
+<HomeScreen>:
+    name: 'home'
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.18, 0.51, 0.94, 1  # Blue background
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Image:
+            source: 'assets/images/mainpagebanner.png'
+            size_hint: 0.7, 0.5
+            allow_stretch: True
+            pos_hint: {'center_x': 0.5, 'center_y': 0.88}
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 15
+            padding: 30
+            size_hint: 0.9, 0.65
+            pos_hint: {'center_x': 0.5, 'center_y': 0.42}
+
+            
+            Button:
+                text: "View Model Essays"
+                background_color: 0.1, 0.6, 1, 1
+                color: 1, 1, 1, 1
+                on_release: root.manager.current = 'model_essay'
+
+            Button:
+                text: "Write an Essay"
+                background_color: 0.1, 0.6, 1, 1
+                color: 1, 1, 1, 1
+                on_release: root.manager.current = 'write_essay'
+
+            Button:
+                text: "Dictionary"
+                background_color: 0.1, 0.6, 1, 1
+                color: 1, 1, 1, 1
+                on_release: root.manager.current = 'dictionary'
+
+          
+            Button:
+                text: "View Rubric"
+                background_color: 0.1, 0.6, 1, 1
+                color: 1, 1, 1, 1
+                on_release: root.manager.current = 'rubric'
+
+            Button:
+                text: "Model Essays as PDF "
+                background_color: 0.1, 0.6, 1, 1
+                color: 1, 1, 1, 1
+                size_hint_y: None
+                height: 140
+                on_release: root.manager.current = 'swipe_pdf'
+            
+
+<ImagePageViewerScreen>:
+    name: 'swipe_pdf'
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Scatter:
+            id: scatter
+            scale: 1
+            do_rotation: False
+            do_translation: True
+            do_scale: True
+            auto_bring_to_front: False
+            size_hint: None, None
+            size: root.width, root.height
+            center: root.center
+
+            Image:
+                id: image_widget
+                allow_stretch: True
+                keep_ratio: True
+                size_hint: None, None
+                size: root.width, root.height
+                source: ''
+                pos: 0, 0
+
+        Label:
+            id: page_label
+            text: ""
+            size_hint: None, None
+            font_size: '16sp'
+            pos_hint: {'center_x': 0.5, 'y': 0.01}
+            color: 0, 0, 0, 1
+
+        Button:
+            text: "<= Back =>"
+            size_hint: None, None
+            size: 100, 60
+            height: 90
+            pos_hint: {'x': 0.02, 'y': 0.9}
+            background_color: 0.2, 0.6, 0.9, 1
+            on_release: root.manager.current = 'home'
+
+
+<ModelEssayScreen>:
+    name: 'model_essay'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        Spinner:
+            text: 'Choose Essay Type'
+            values: ['formal_letter', 'article', 'narrative', 'speech']
+            size_hint_y: None
+            height: 150
+            background_color: 0.18, 0.51, 0.94, 1
+            on_text: root.load_essay(self.text)
+
+        TextInput:
+            id: essay_view
+            readonly: True
+            markup: True
+            font_size: '16sp'
+            size_hint_y: 1  # ⬆ Takes up all remaining vertical space
+            background_color: 1, 1, 1, 1
+            foreground_color: 0, 0, 0, 1
+
+        Button:
+            text: "<== Back"
+            size_hint_y: None
+            height: 120  # ✅ Taller button
+            background_color: 0.18, 0.51, 0.94, 1  # ✅ Sky blue
+            color: 1, 1, 0, 1
+            on_release: root.manager.current = 'home'
+
+<WriteEssayScreen>:
+    name: 'write_essay'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        Spinner:
+            id: template_spinner
+            text: 'Choose Template Type'
+            values: ['formal_letter', 'article', 'narrative']
+            size_hint_y: None
+            height: 120
+            on_text: root.load_template(self.text)
+
+        TextInput:
+            id: draft_title
+            hint_text: "Enter Draft Title"
+            multiline: False
+            size_hint_y: None
+            height: 100
+
+        TextInput:
+            id: essay_input
+            text: ''
+            multiline: True
+            size_hint_y: 1  # ⬆ Takes all remaining space
+            on_text: root.update_info()
+
+        Label:
+            id: word_count
+            text: "Word Count: 0"
+            size_hint_y: None
+            height: 30
+
+        Label:
+            id: grammar_tips
+            text: "Tips: "
+            size_hint_y: None
+            height: 30
+
+        Label:
+            id: draft_status
+            text: ""
+            color: 0, 0.5, 0, 1
+            size_hint_y: None
+            height: 30
+
+        GridLayout:
+            cols: 2
+            size_hint_y: None
+            height: 240  # Increased to accommodate larger buttons
+            spacing: 10
+
+            Button:
+                text: "Save Draft"
+                height: 120
+                background_color: 0.529, 0.808, 0.98, 1  # Light blue
+                color: 1, 1, 1, 1
+                on_release: root.save_draft()
+
+            Button:
+                text: "Load Draft"
+                height: 120
+                background_color: 0.529, 0.808, 0.98, 1
+                color: 1, 1, 1, 1
+                on_release: root.load_draft()
+
+            Button:
+                text: "Generate Outline"
+                height: 120
+                background_color: 0.529, 0.808, 0.98, 1
+                color: 1, 1, 1, 1
+                on_release: root.generate_outline()
+
+            Button:
+                text: "Export as PDF"
+                height: 120
+                background_color: 0.529, 0.808, 0.98, 1
+                color: 1, 1, 1, 1
+                on_release: root.export_pdf()
+
+        Button:
+            text: "<= Back"
+            size_hint_y: None
+            height: 120
+            background_color: 0.529, 0.808, 0.98, 1
+            color: 1, 1, 1, 1
+            on_release: root.manager.current = 'home'
+
+
+<DictionaryScreen>:
+    name: 'dictionary'
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.18, 0.51, 0.94, 1  # Blue background
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 20
+            spacing: 10
+            size_hint: 1, 1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+            TextInput:
+                id: dict_input
+                hint_text: "Enter word"
+                multiline: False
+                size_hint_y: None
+                height: 250
+                font_size: '20sp'
+
+            Button:
+                text: "Search"
+                size_hint_y: None
+                height: 180
+                background_color: 0.529, 0.808, 0.98, 1  # Light blue
+                color: 1, 1, 0, 1
+                on_release: root.search_word()
+
+            Label:
+                id: result_label
+                text: ""
+                color: 1, 1, 1, 1
+                text_size: self.size
+                halign: 'left'
+                valign: 'top'
+                size_hint_y: 1
+
+            Button:
+                text: "<= Back"
+                size_hint_y: None
+                height: 180
+                background_color: 0.529, 0.808, 0.98, 1
+                color: 1, 1, 0, 1
+                on_release: root.manager.current = 'home'
+
+<RubricScreen>:
+    name: 'rubric'
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.18, 0.51, 0.94, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "bet@[b]Writ@[/b]\n[color=ffff00]RUBRIC[/color]"
+            markup: True
+            font_size: '30sp'
+            halign: 'center'
+            valign: 'middle'
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+
+        Spinner:
+            id: rubric_spinner
+            text: "Choose Rubric"
+            values: ['Narrative', 'Article', 'Formal Letter', 'Speech']
+            size_hint: 0.8, None
+            height: 100
+            pos_hint: {'center_x': 0.5, 'center_y': 0.77}
+            on_text: root.load_rubric(self.text)
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: [20, 10]
+            spacing: 10
+            size_hint: 0.9, 0.45
+            pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                bar_width: 8
+
+                Label:
+                    id: rubric_text
+                    text: ""
+                    color: 0, 0, 0, 1
+                    font_size: '16sp'
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    padding: [10, 10]
+
+        Button:
+            text: "<==Back"
+            size_hint: 0.9, None
+            height: 100
+            pos_hint: {'center_x': 0.5, 'y': 0.05}
+            background_color: 0.529, 0.808, 0.98, 1
+            color: 1, 1, 1, 1
+            on_release: root.manager.current = 'home'
